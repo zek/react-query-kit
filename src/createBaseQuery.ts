@@ -20,7 +20,13 @@ export function createBaseQuery(
   options: CreateQueryOptions,
   useRQHook: (options: any) => any
 ): any {
-  const { primaryKey, queryFn, queryKeyHashFn, select: _select, ...defaultOptions } = options
+  const {
+    primaryKey,
+    queryFn,
+    queryKeyHashFn,
+    select: _select,
+    ...defaultOptions
+  } = options
 
   const getPrimaryKey = () => primaryKey
 

@@ -20,7 +20,7 @@ export function createBaseQuery(
   options: CreateQueryOptions,
   useRQHook: (options: any) => any
 ): any {
-  const { primaryKey, queryFn, select: _select, ...defaultOptions } = options
+  const { primaryKey, queryFn, queryKeyHashFn, select: _select, ...defaultOptions } = options
 
   const getPrimaryKey = () => primaryKey
 
@@ -37,6 +37,7 @@ export function createBaseQuery(
       ...restOptions,
       queryFn,
       queryKey,
+      queryKeyHashFn,
     }
 
     const queryClient = useQueryClient({ context: mergedOptions.context })
@@ -58,6 +59,7 @@ export function createBaseQuery(
   useGeneratedQuery.getPrimaryKey = getPrimaryKey
   useGeneratedQuery.getKey = getKey
   useGeneratedQuery.queryFn = queryFn
+  useGeneratedQuery.queryKeyHashFn = queryKeyHashFn
 
   return useGeneratedQuery
 }

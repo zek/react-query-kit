@@ -10,6 +10,8 @@ import type {
   UseMutationResult,
   UseQueryOptions,
   UseQueryResult,
+  QueryKeyHashFunction,
+  QueryKey,
 } from '@tanstack/react-query'
 import type { Updater } from '@tanstack/react-query/build/types/packages/query-core/src/utils'
 
@@ -47,7 +49,7 @@ type PartialQueryKitKey<TVariables> = TVariables extends Record<any, any>
 
 export type ExposeMethods<TFnData, TVariables> = {
   getPrimaryKey: () => string
-  queryKeyHashFn: any
+  queryKeyHashFn?: QueryKeyHashFunction<QueryKey>
   getKey: <V extends PartialQueryKitKey<TVariables> | void = void>(
     variables?: V
   ) => QueryKitKey<V>
@@ -56,7 +58,7 @@ export type ExposeMethods<TFnData, TVariables> = {
 
 type QueryHookOptions<TFnData, Error, TData, TVariables> = Omit<
   UseQueryOptions<TFnData, Error, TData, QueryKitKey<TVariables>>,
-  'queryKey' | 'queryFn' | 'enabled' | 'queryKeyHashFn'
+  'queryKey' | 'queryFn' | 'enabled' | 'queryKeyHashFn'
 > &
   AdditionalQueryHookOptions<TFnData, TVariables>
 

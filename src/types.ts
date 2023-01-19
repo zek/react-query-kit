@@ -47,6 +47,7 @@ type PartialQueryKitKey<TVariables> = TVariables extends Record<any, any>
 
 export type ExposeMethods<TFnData, TVariables> = {
   getPrimaryKey: () => string
+  queryKeyHashFn: any
   getKey: <V extends PartialQueryKitKey<TVariables> | void = void>(
     variables?: V
   ) => QueryKitKey<V>
@@ -55,7 +56,7 @@ export type ExposeMethods<TFnData, TVariables> = {
 
 type QueryHookOptions<TFnData, Error, TData, TVariables> = Omit<
   UseQueryOptions<TFnData, Error, TData, QueryKitKey<TVariables>>,
-  'queryKey' | 'queryFn' | 'enabled'
+  'queryKey' | 'queryFn' | 'enabled' | 'queryKeyHashFn'
 > &
   AdditionalQueryHookOptions<TFnData, TVariables>
 
@@ -82,7 +83,7 @@ type InfiniteQueryHookOptions<TFnData, Error, TData, TVariables> = Omit<
     TFnData,
     QueryKitKey<TVariables>
   >,
-  'queryKey' | 'queryFn' | 'enabled'
+  'queryKey' | 'queryFn' | 'enabled' | 'queryKeyHashFn'
 > &
   AdditionalQueryHookOptions<TFnData, TVariables>
 

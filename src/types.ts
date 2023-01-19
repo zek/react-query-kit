@@ -65,7 +65,7 @@ type QueryHookOptions<TFnData, Error, TData, TVariables> = Omit<
 export interface QueryHook<TFnData, TVariables = void, Error = unknown>
   extends ExposeMethods<TFnData, TVariables> {
   <TData = TFnData>(
-    options: TVariables extends void
+    options?: TVariables extends void
       ? QueryHookOptions<TFnData, Error, TData, TVariables> | void
       : QueryHookOptions<TFnData, Error, TData, TVariables>
   ): UseQueryResult<TData, Error> & {
